@@ -1,16 +1,35 @@
 import os
 from importlib.machinery import SourceFileLoader
 from inspect import getsourcefile
+from typing import List
+
+def part_1(inp: List[int]):
+
+    inp.sort()
+
+    for i in inp:
+        n = 2020 - i
+
+        if n in inp:
+            print(i*n)
+            return
+
+def part_2(inp: List[int]):
+
+    inp.sort()
+
+    for i, x in enumerate(inp):
+        for j, y in enumerate(inp[i:], i):
+            for z in inp[j:]:
+                if x + y + z == 2020:
+                    print (x*y*z)
+                    return
 
 if __name__ == "__main__":
     l = None
 
     with open(f"{os.path.dirname(os.path.abspath(getsourcefile(lambda:0)))}/input", 'r') as fi:
-        l = set([int(x) for x in fi.readlines()])
+        l = [int(x) for x in fi.readlines()]
 
-    for i in l:
-        n = 2020 - i
-
-        if n in l:
-            print(i*n)
-            break
+    part_1(l)
+    part_2(l)
