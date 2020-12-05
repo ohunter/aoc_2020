@@ -4,12 +4,7 @@ from typing import Dict, List, Tuple
 import re
 
 def part_1(inp: List[Tuple[int, int]]):
-    mx = 0
-
-    for bp in inp:
-        mx = max(mx, bp[0] * 8 + bp[1])
-
-    print (mx)
+    print(max([i * 8 + j for i, j in inp]))
 
 def part_2(inp: List[Tuple[int, int]]):
     IDs = [i*8 + j for i, j in inp]
@@ -25,7 +20,6 @@ if __name__ == "__main__":
     p = "(\w+):(\S+)"
 
     with open(f"{os.path.dirname(os.path.abspath(getsourcefile(lambda:0)))}/input", 'r') as fi:
-    # with open(f"{os.path.dirname(os.path.abspath(getsourcefile(lambda:0)))}/tmp", 'r') as fi:
         for s in fi.readlines():
             tmp = s.translate(str.maketrans({'F':'0', 'L':'0', 'B':'1', 'R':'1'}))
             l.append((int(tmp[:7], 2), int(tmp[7:], 2)))

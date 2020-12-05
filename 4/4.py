@@ -22,42 +22,20 @@ def part_2(inp: List[Dict[str, int]]):
                 if not valid:
                     break
                 if k == 'byr':
-                    if len(v) == 4 and 1920 <= int(v) <= 2002:
-                        valid &= True
-                    else:
-                        valid &= False
+                    valid &= len(v) == 4 and 1920 <= int(v) <= 2002
                 elif k == 'iyr':
-                    if len(v) == 4 and 2010 <= int(v) <= 2020:
-                        valid &= True
-                    else:
-                        valid &= False
+                    valid &= len(v) == 4 and 2010 <= int(v) <= 2020
                 elif k == 'eyr':
-                    if len(v) == 4 and 2020 <= int(v) <= 2030:
-                        valid &= True
-                    else:
-                        valid &= False
+                    valid &= len(v) == 4 and 2020 <= int(v) <= 2030
                 elif k == 'hgt':
-                    if v.endswith('cm') and 150 <= int(v[:-2]) <= 193:
-                        valid &= True
-                    elif v.endswith('in') and 59 <= int(v[:-2]) <= 76:
-                        valid &= True
-                    else:
-                        valid &= False
+                    valid &= (v.endswith('cm') and 150 <= int(v[:-2]) <= 193) or (v.endswith('in') and 59 <= int(v[:-2]) <= 76)
                 elif k == 'hcl':
-                    if len(v) == 7 and re.search('\#[0-9a-f]{6}', v):
-                        valid &= True
-                    else:
-                        valid &= False
+                    valid &= len(v) == 7 and re.search('\#[0-9a-f]{6}', v)
                 elif k == 'ecl':
-                    if v in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']:
-                        valid &= True
-                    else:
-                        valid &= False
+                    valid &= v in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
                 elif k == 'pid':
-                    if len(v) == 9 and re.search('[0-9]{9}', v):
-                        valid &= True
-                    else:
-                        valid &= False
+                    valid &= len(v) == 9 and re.search('[0-9]{9}', v)
+
             if valid:
                 num += 1
 
