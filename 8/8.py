@@ -47,7 +47,7 @@ def part_2(inp: List[Tuple[str, int]]):
                 if not b["altered"]:
                     tmp = deepcopy(b)
 
-                    tmp["instr"][tmp["pc"]][0] = "jmp"
+                    tmp["instr"][tmp["pc"]] = ("jmp", tmp["instr"][tmp["pc"]][1])
                     tmp["pc"] += tmp["instr"][tmp["pc"]][1]
                     tmp["altered"] = True
 
@@ -56,7 +56,7 @@ def part_2(inp: List[Tuple[str, int]]):
                 if not b["altered"]:
                     tmp = deepcopy(b)
 
-                    tmp["instr"][tmp["pc"]][0] = "nop"
+                    tmp["instr"][tmp["pc"]] = ("nop", tmp["instr"][tmp["pc"]][1])
                     tmp["pc"] += 1
                     tmp["altered"] = True
 
@@ -77,5 +77,5 @@ if __name__ == "__main__":
     with open(f"{os.path.dirname(os.path.abspath(getsourcefile(lambda:0)))}/input", 'r') as fi:
         l = [(instr.split()[0], int(instr.split()[1])) for instr in fi.readlines()]
 
-    part_1([[a for a in b] for b in l])
-    part_2([[a for a in b] for b in l])
+    part_1(l)
+    part_2(l)
