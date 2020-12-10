@@ -1,7 +1,6 @@
 import os
 from inspect import getsourcefile
-from typing import List, Tuple
-from copy import deepcopy
+from typing import List
 
 def part_1(inp: List[int], _min):
     offset = _min
